@@ -9,6 +9,10 @@ init: ## Initialize project
 	pdm install
 	pdm run pre-commit install
 
+.PHONY: run_dev
+run_dev: ## Run application in development mode
+	pdm run fastapi dev src/{{ project_package }}/main.py
+
 .PHONY: lint
 lint: ## Code analyse and lint
 	pdm run pylint src/ tests/
