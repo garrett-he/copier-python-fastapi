@@ -14,7 +14,9 @@ classifiers = [
     "Programming Language :: Python :: 3",{% for i in python_version | version_list(['3.10', '3.11', '3.12', '3.13', '3.14']) %}
     "Programming Language :: Python :: {{ i }}",{% endfor %}
 ]
-dependencies = []
+dependencies = [
+    "fastapi[standard]>=0.115.8",
+]
 
 [project.urls]
 homepage = "https://github.com/{{ vcs_github_path }}"
@@ -41,5 +43,6 @@ build-backend = "pdm.backend"
 distribution = true
 
 [tool.pdm.scripts]
+dev = "fastapi dev src/{{ project_package }}/main.py"
 lint = "pylint src/ tests/"
 test = "pytest --cov=src --cov-report=term-missing"
