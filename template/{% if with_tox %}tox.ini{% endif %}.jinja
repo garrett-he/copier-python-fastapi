@@ -1,0 +1,10 @@
+[tox]
+isolated_build = True
+envlist = {% for i in python_version | version_list(['3.10', '3.11', '3.12', '3.13']) %}
+    py{{ i | replace('.', '') }}{% endfor %}
+
+[testenv]
+allowlist_externals = uv
+commands =
+    uv sync -v
+    uv run pytest
