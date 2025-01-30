@@ -1,0 +1,15 @@
+{% if with_db %}
+from pydantic import AnyUrl
+{% endif %}
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+class Settings(BaseSettings):
+    API_V1_STR: str = '/api/v1'
+
+    {% if with_db %}
+    DATABASE_DSN: AnyUrl
+    {% endif %}
+
+    model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8')
+
+settings = Settings()

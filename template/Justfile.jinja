@@ -8,6 +8,15 @@ init:
 build:
     uv build
 
+db-revision:
+    uv run alembic revision --autogenerate
+
+db-upgrade:
+    uv run alembic upgrade head
+
+dev: db-upgrade
+    uv run fastapi dev src/{{ project_package }}/main.py
+
 lint:
     uv run pylint src/ tests/
 

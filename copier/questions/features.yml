@@ -3,3 +3,8 @@ with_tox:
   type: bool
   help: "With tox?"
   default: True
+
+with_db:
+  type: bool
+  help: "With database?"
+  default: False
