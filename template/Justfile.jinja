@@ -8,14 +8,16 @@ init:
 build:
     uv build
 
+{% if with_db %}
 db-revision:
     uv run alembic revision --autogenerate
 
 db-upgrade:
     uv run alembic upgrade head
+{% endif %}
 
-dev: db-upgrade
-    uv run fastapi dev src/{{ project_package }}/main.py
+dev port: {% if with_db %}db-upgrade{% endif %}
+    uv run fastapi dev src/{{ project_package }}/main.py --port {% raw %}{{ port }}{% endraw %}
 
 lint:
     uv run pylint src/ tests/
