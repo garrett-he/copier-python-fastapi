@@ -1,6 +1,5 @@
 [MAIN]
 jobs = 0
-suggestion-mode = yes
 disable = missing-module-docstring,
           missing-class-docstring,
           missing-function-docstring,

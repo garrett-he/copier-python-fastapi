@@ -28,4 +28,10 @@ jobs:
 
       - run: uv sync
 
+      {% if with_db %}
+      - run: |
+          echo 'DATABASE_DSN=sqlite:///./data/db.sqlite' > .env
+          uv run alembic upgrade head
+      {% endif %}
+
       - run: uv run pytest
